@@ -30,7 +30,7 @@ def div_mod(a, b, P):
 def to_hex_string(fft_output: List[int]) -> str:
     return ''.join(format(num, 'x') for num in fft_output)
 
-
+# @note: here is the start of another version of NTT and it's not working
 def ntt(a, p):
   
   n = len(a)
@@ -60,7 +60,9 @@ def evaluate_ntt(a, x, p):
   y_NTT = [(a_NTT[i] * x_NTT[i]) % p for i in range(n)]
 
   return inv_ntt(y_NTT, p)
+# @note: here is the end of another version of NTT and it's not working
 
+# @note: this is the start of brute force algo
 def classic_ntt(arr, xs):
     n = len(arr)
     transform = [0] * n
@@ -69,7 +71,9 @@ def classic_ntt(arr, xs):
         transform[i] = sum(arr[j] * pow(xs[i], j, P) % P for j in range(n)) % P
 
     return transform
+# @note: this is the end of brute force algo
 
+# @note: this is the start of the most optimized algo
 def some_algo_optimized_v2(arr, xs):
     n = len(arr)
     transform = [0] * n
@@ -79,7 +83,10 @@ def some_algo_optimized_v2(arr, xs):
             transform[i] = (transform[i] * xs[i] + arr[j]) % P
 
     return transform
+# @note: this is the end of the most optimized algo
 
+
+# @note: this is the start of the sligthly optimized algo
 def some_algo_optimized(arr, xs):
     n = len(arr)
     transform = [0] * n
@@ -92,6 +99,8 @@ def some_algo_optimized(arr, xs):
         transform[i] %= P 
 
     return transform
+# @note: this is the start of the sligthly optimized algo
+
 
 with open('./test_blob_ 640646.txt', 'r') as file:
     blob_hex = file.read().strip()
